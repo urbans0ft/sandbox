@@ -1,8 +1,7 @@
 @echo off
 
-set url_base=https://raw.githubusercontent.com/urbans0ft/sandbox/refs/heads/main/blueprint/startup.bat
-for /f "tokens=1 delims=-" %%i in ("%~0") do (set prefix=%%i)
-set setup_file=%prefix%-setup.bat
+set url_base=https://raw.githubusercontent.com/urbans0ft/sandbox/refs/heads/main/blueprint
+set setup_file=setup.bat
 set sandbox_setup_url=%url_base%/%setup_file%
 
 :: constants
@@ -39,4 +38,4 @@ echo(^</Configuration^>>>%sandbox_config_path%
 echo(
 
 :: start the sandbox with its configuration file
-start "" "%sandbox_config_path%"
+::start "" "%sandbox_config_path%"
