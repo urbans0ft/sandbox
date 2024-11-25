@@ -1,6 +1,6 @@
 @echo off
 
-set url_base=https://gist.githubusercontent.com/urbans0ft/b95ebd49dc7d2fc66b5de2df298b8351/raw/660b4cd1385e7352b9d65e42da3264bf80821cf7
+set url_base=https://raw.githubusercontent.com/urbans0ft/sandbox/refs/heads/main/blueprint/startup.bat
 for /f "tokens=1 delims=-" %%i in ("%~0") do (set prefix=%%i)
 set setup_file=%prefix%-setup.bat
 set sandbox_setup_url=%url_base%/%setup_file%

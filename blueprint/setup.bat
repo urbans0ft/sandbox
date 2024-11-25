@@ -1,5 +1,5 @@
 @echo off
-REM cmd /c curl "https://gist.githubusercontent.com/urbans0ft/ab80dcdd04312c3c86a67c9a726fb00c/raw/b85f338d5ab3f08e34378946d45ebb7bfa7d7550/new-version.bat" -o "%TEMP%/new-version.bat" -L && "%TEMP%/new-version.bat"
+REM cmd /c curl "https://raw.githubusercontent.com/urbans0ft/sandbox/refs/heads/main/blueprint/setup.bat" -o "%TEMP%/setup.bat" -L && "%TEMP%/setup.bat"
 :: -----------------------------------------------------------------------------
 :: preamble --------------------------------------------------------------------
 :: -----------------------------------------------------------------------------
