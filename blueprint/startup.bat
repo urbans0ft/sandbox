@@ -5,7 +5,7 @@ set setup_file=setup.bat
 set sandbox_setup_url=%url_base%/%setup_file%
 
 :: constants
-set sandbox_install_dir="..\%~0"
+set sandbox_install_dir=%CD%
 set sandbox_config_file=sandbox-config.wsb
 set sandbox_logon_file=LogonCommand.bat
 set sandbox_setup_file=Setup-DevEnv.bat
@@ -13,6 +13,14 @@ set sandbox_setup_file=Setup-DevEnv.bat
 set sandbox_config_path=%sandbox_install_dir%\%sandbox_config_file%
 set sandbox_logon_path=%sandbox_install_dir%\%sandbox_logon_file%
 
+
+echo sandbox_install_dir = %sandbox_install_dir%
+echo sandbox_config_file = %sandbox_config_file%
+echo sandbox_logon_file = %sandbox_logon_file%
+echo sandbox_setup_file = %sandbox_setup_file%
+echo sandbox_config_path = %sandbox_config_path%
+echo sandbox_logon_path = %sandbox_logon_path%
+goto :eof
 mkdir %sandbox_install_dir% >nul 2>&1
 
 :: write logon script which gets executed after starting the sandbox
