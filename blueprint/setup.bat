@@ -24,7 +24,7 @@ call :isElevated && (
 :: Path to download software installer to
 set download_path=%USERPROFILE%\Downloads
 
-set targets=registry;7-Zip;notepad++
+set targets=registry;7-Zip;notepad++;pwsh
 
 for %%a in ("%targets:;=" "%") do (
     call :info ##### %%~a #####
