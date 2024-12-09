@@ -152,7 +152,7 @@ call :ivc reg add HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Ex
 REM Black background
 call :ivc reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v WallPaper /t REG_SZ /d "" /f || set registry_failed=1
 REM "Normal" right click
-call :ivc reg add HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /ve /d "" || set registry_failed=1
+call :ivc reg add HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /ve /d "" /f || set registry_failed=1
 REM Disable the search bar
 call :ivc reg add HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Search /v SearchboxTaskbarMode /t REG_DWORD /d 0 /f || set registry_failed=1
 REM Combine when taskbar is full
