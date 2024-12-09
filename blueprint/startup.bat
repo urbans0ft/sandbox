@@ -16,11 +16,13 @@ set sandbox_logon_path=%sandbox_install_dir%\%sandbox_logon_file%
 
 echo sandbox_install_dir = %sandbox_install_dir%
 echo sandbox_config_file = %sandbox_config_file%
-echo sandbox_logon_file = %sandbox_logon_file%
-echo sandbox_setup_file = %sandbox_setup_file%
+echo sandbox_logon_file  = %sandbox_logon_file%
+echo sandbox_setup_file  = %sandbox_setup_file%
 echo sandbox_config_path = %sandbox_config_path%
-echo sandbox_logon_path = %sandbox_logon_path%
+echo sandbox_logon_path  = %sandbox_logon_path%
+
 goto :eof
+
 mkdir %sandbox_install_dir% >nul 2>&1
 
 :: write logon script which gets executed after starting the sandbox
@@ -34,16 +36,16 @@ echo(    ^<vGPU^>Enable^</vGPU^>>>%sandbox_config_path%
 echo(    ^<Networking^>Enable^</Networking^>>>%sandbox_config_path%
 echo(    ^<MappedFolders^>>>%sandbox_config_path%
 echo(        ^<MappedFolder^>>>%sandbox_config_path%
-echo(            ^<HostFolder^>C:\Sandbox^</HostFolder^>>>%sandbox_config_path%
-echo(            ^<SandboxFolder^>C:\Sandbox^</SandboxFolder^>>>%sandbox_config_path%
+echo(            ^<HostFolder^>%sandbox_install_dir%^</HostFolder^>>>%sandbox_config_path%
+echo(            ^<SandboxFolder^>%sandbox_install_dir%^</SandboxFolder^>>>%sandbox_config_path%
 echo(            ^<ReadOnly^>true^</ReadOnly^>>>%sandbox_config_path%
 echo(        ^</MappedFolder^>>>%sandbox_config_path%
 echo(    ^</MappedFolders^>>>%sandbox_config_path%
 echo(    ^<LogonCommand^>>>%sandbox_config_path%
-echo(        ^<Command^>C:\Sandbox\LogonCommand.bat^</Command^>>>%sandbox_config_path%
+echo(        ^<Command^>%sandbox_logon_path%^</Command^>>>%sandbox_config_path%
 echo(    ^</LogonCommand^>>>%sandbox_config_path%
 echo(^</Configuration^>>>%sandbox_config_path%
 echo(
 
 :: start the sandbox with its configuration file
-::start "" "%sandbox_config_path%"
+start "" "%sandbox_config_path%"
