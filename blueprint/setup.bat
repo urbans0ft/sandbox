@@ -220,7 +220,7 @@ if not exist !install_path! (
     call :download !url! "%download_path%\!filename!" || exit /b 1
     
     call :info Installing !app_name!
-    call :ivc "%download_path%\!filename!" /passive || exit /b 1
+    call :ivc "%download_path%\!filename!" /passive INSTALLFOLDER="!install_path!"|| exit /b 1
 ) else (
     call :info '!install_path!' already installed.
 )
