@@ -1,5 +1,5 @@
 @echo off
-REM cmd /c curl "https://raw.githubusercontent.com/urbans0ft/sandbox/refs/heads/main/blueprint/setup.bat" -o "%TEMP%/setup.bat" -L && "%TEMP%/setup.bat"
+
 :: -----------------------------------------------------------------------------
 :: preamble --------------------------------------------------------------------
 :: -----------------------------------------------------------------------------
@@ -24,7 +24,7 @@ call :isElevated && (
 :: Path to download software installer to
 set download_path=%USERPROFILE%\Downloads
 
-set targets=registry;notepad++
+set targets=registry;7-Zip;notepad++
 
 for %%a in ("%targets:;=" "%") do (
     call :info ##### %%~a #####
@@ -166,17 +166,6 @@ exit /b 0
 
 :: -----------------------------------------------------------------------------
 
-:run
-echo Run
-if not exist C:\Run mkdir C:\Run
-echo @START C:\cygwin\bin\mintty.exe -i /Cygwin-Terminal.ico ->C:\Run\cygwin.bat
-echo @EXPLORER "%%CD%%">C:\Run\explore.bat
-echo @Powershell -Command "Start-Process %%* -Verb RunAs">C:\Run\elevate.bat
-echo @^<nul set /p ="%%CD%%"^|clip>C:\Run\cppwd.bat
-exit /b
-
-:: -----------------------------------------------------------------------------
-
 :7-Zip
 set "app_name=%0" && set "app_name=!app_name:~1!"
 set install_path=C:\Apps\!app_name!
@@ -212,6 +201,26 @@ if not exist !install_path! (
     
     call :info Installing !app_name!
     call :ivc "%download_path%\!filename!" /S /D=!install_path! || exit /b 1
+) else (
+    call :info '!install_path!' already installed.
+)
+exit /b 0
+
+:: -----------------------------------------------------------------------------
+
+:pwsh
+set "app_name=%0" && set "app_name=!app_name:~1!"
+set install_path=C:\Apps\!app_name!
+if not exist !install_path! (
+    for /f "tokens=2 delims= " %%i in ('curl -H "Accept: application/vnd.github+json" "https://api.github.com/repos/PowerShell/powershell/releases/latest" ^| findstr /r "browser_download_url.*win-x64\.msi"') do (
+        set url=%%i
+        set filename=%%~nxi
+    )
+    call :info Downloading !app_name!
+    call :download !url! "%download_path%\!filename!" || exit /b 1
+    
+    call :info Installing !app_name!
+    call :ivc "%download_path%\!filename!" /passive || exit /b 1
 ) else (
     call :info '!install_path!' already installed.
 )
