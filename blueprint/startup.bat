@@ -21,8 +21,6 @@ echo sandbox_setup_file  = %sandbox_setup_file%
 echo sandbox_config_path = %sandbox_config_path%
 echo sandbox_logon_path  = %sandbox_logon_path%
 
-goto :eof
-
 mkdir %sandbox_install_dir% >nul 2>&1
 
 :: write logon script which gets executed after starting the sandbox
