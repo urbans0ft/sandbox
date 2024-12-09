@@ -36,11 +36,11 @@ for %%a in ("%targets:;=" "%") do (
     )
 )
 
-set newpaths=C:\Run
-for %%a in ("%newpaths:;=" "%") do (
-    call :info ##### set-path: %%~a #####
-    call :ivc call :set-path %%~a
-)
+REM set newpaths=C:\Run
+REM for %%a in ("%newpaths:;=" "%") do (
+REM     call :info ##### set-path: %%~a #####
+REM     call :ivc call :set-path %%~a
+REM )
 
 :end
 popd
